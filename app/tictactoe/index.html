@@ -1,0 +1,43 @@
+<html ng-app="app">
+
+<head>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+  <script src="tictactoe.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body ng-controller="boardController">
+  <h1>Tic Tac Toe</h1>
+
+  <div class="container">
+    <div class="well">
+      <fieldset ng-disabled="gameOver">
+
+        <div>
+          <button class="btn-primary btn-lg" ng-repeat="cell in board[0]" ng-click="move(cell);">{{ cell.value }}</button>
+        </div>
+        <div>
+          <button class="btn-primary btn-lg" ng-repeat="cell in board[1]" ng-click="move(cell);">{{ cell.value }}</button>
+        </div>
+        <div>
+          <button class="btn-primary btn-lg" ng-repeat="cell in board[2]" ng-click="move(cell);">{{ cell.value }}</button>
+        </div>
+        <br/>
+      </fieldset>
+
+      <p>
+        <span ng-hide="winner || draw">Player {{ currentPlayer }}'s turn</span>
+        <span ng-show="winner">Player {{ currentPlayer }} won!</span>
+        <br>
+        <span ng-show="cellTaken">This space is taken, please choose again</span>
+        <span ng-show="draw">Draw</span>
+      </p>
+    </div>
+  </div>
+  <button ng-click="reset();" class="buttonNewGame">New Game</button>
+</body>
+
+</html>
